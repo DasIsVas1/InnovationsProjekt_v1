@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react'
 import {StyleSheet, Text, View} from 'react-native';
 import DesignMBScreen from "./components/UnusedComponents/DesignMBScreen";
 import {createAppContainer} from "react-navigation";
@@ -8,6 +8,11 @@ import {Entypo} from '@expo/vector-icons';
 import {Ionicons} from '@expo/vector-icons';
 import CameraScreen from "./components/Screens/CameraScreen";
 import UserScreen from "./components/Screens/UserScreen";
+import * as firebase from "firebase";
+import SignUpForm from "./components/LoginComponent/SignUpForm";
+import LoginForm from "./components/LoginComponent/LoginForm";
+import ProfileScreen from "./components/LoginComponent/ProfileScreen";
+import Card from "react-native-paper";
 
 /*
 Husk at begge skal importeres.
@@ -17,7 +22,12 @@ Husk at begge skal importeres.
 
 
 /*
+------------------------------------------ LOGIN ------------------------------------------
+ */
 
+
+/*
+------------------------------------------ LOGIN END --------------------------------------
  */
 
 const tabNavigator = createBottomTabNavigator(
@@ -77,16 +87,7 @@ const tabNavigator = createBottomTabNavigator(
             size: 40
         }
     }
-)
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
-
+);
 
 
 export default createAppContainer(tabNavigator);

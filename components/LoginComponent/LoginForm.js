@@ -63,6 +63,7 @@ export default class LoginForm extends React.Component {
         if (isCompleted) {
             return <Text>You are now signed up</Text>;
         }
+
         return (
             <View>
                 <Text style = {styles.header}>Login</Text>
