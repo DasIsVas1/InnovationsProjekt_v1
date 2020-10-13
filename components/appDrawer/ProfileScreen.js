@@ -3,8 +3,15 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Image,Button } from 'react-native';
 import Header from "./Header";
+import firebase from "firebase";
 
 export default class ProfileScreen extends React.Component {
+
+    handleLogOut = async () => {
+        await firebase.auth().signOut();
+    };
+
+
     state={
         clicked:false,
         btnTitle:'Aktiver den rigtige font!'
@@ -37,10 +44,8 @@ export default class ProfileScreen extends React.Component {
                     >
                         Eigil Kjærullf
                     </Text>
-                    <Button
-                        title={this.state.btnTitle}
-                        onPress={this.onPress}
-                    />
+                    <Button onPress={this.handleLogOut} title="Log out" />
+
                 </View>
             </View>
         );

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import DesignMBScreen from "./components/UnusedComponents/DesignMBScreen";
 import {createAppContainer} from "react-navigation";
 import {createBottomTabNavigator} from "react-navigation-tabs";
@@ -12,22 +12,35 @@ import * as firebase from "firebase";
 import SignUpForm from "./components/LoginComponent/SignUpForm";
 import LoginForm from "./components/LoginComponent/LoginForm";
 import ProfileScreen from "./components/LoginComponent/ProfileScreen";
-import Card from "react-native-paper";
+import {Card} from 'react-native-paper';
 
 /*
 Husk at begge skal importeres.
 1. skal vi have en container med som bruges i default (rd. "MAIN") metoden
 2. skal vi have importer selve bottom navigation componenten
  */
-
-
 /*
------------------------------------------- LOGIN ------------------------------------------
+------------------------------------------ FIREBASE ---------------------------------------
+ */
+const fireBaseConfig = {
+    apiKey: "AIzaSyB2Xe40c4U_1MrC9ffo6ubNDHod5RLpih0",
+    authDomain: "innovationsprojektmbapp.firebaseapp.com",
+    databaseURL: "https://innovationsprojektmbapp.firebaseio.com",
+    projectId: "innovationsprojektmbapp",
+    storageBucket: "innovationsprojektmbapp.appspot.com",
+    messagingSenderId: "966473468096",
+    appId: "1:966473468096:web:7e9b4bd1f9ed33c8e7c525"
+};
+// vigtigt at tilføje nedestående if statement, da ellers init firebase flere gange
+if (!firebase.apps.length) {
+    firebase.initializeApp(fireBaseConfig);
+}
+/*
+------------------------------------------ FIREBASE END -----------------------------------
  */
 
-
 /*
------------------------------------------- LOGIN END --------------------------------------
+------------------------------------------ tabNavigator -----------------------------------
  */
 
 const tabNavigator = createBottomTabNavigator(
@@ -89,5 +102,78 @@ const tabNavigator = createBottomTabNavigator(
     }
 );
 
+const AppNav = createAppContainer(tabNavigator);
 
-export default createAppContainer(tabNavigator);
+/*
+------------------------------------------ tabNavigator END --------------------------------
+ */
+
+/*
+------------------------------------------ MAIN --------------------------------------------
+ */
+
+export default class App extends React.Component {
+
+    state = {user: null}
+
+    componentDidMount() {
+
+        firebase.auth().onAuthStateChanged(user => {
+            this.setState({user});
+        });
+    }
+
+    render() {
+        const {user} = this.state
+
+        if (!user) {
+            return (
+                <View>
+                    <Card>
+                        <SignUpForm/>
+                    </Card>
+
+                    <Card>
+                        <LoginForm/>
+                    </Card>
+                </View>
+            )
+        } else {
+            return (
+
+                <AppNav user={user}/>
+
+            )
+        }
+    }
+}
+
+/*
+------------------------------------------ MAIN END-----------------------------------------
+ */
+
+/*
+------------------------------------------ STYLESHEET --------------------------------------
+ */
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        //paddingTop: Constants.statusBarHeight,
+        padding: 8,
+    },
+    paragraph: {
+        margin: 24,
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    }
+});
+
+/*
+------------------------------------------ STYLESHEET END ----------------------------------
+ */
+

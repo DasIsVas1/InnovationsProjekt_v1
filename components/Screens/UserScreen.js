@@ -3,6 +3,7 @@ import {StyleSheet, ScrollView, Text, View, TouchableOpacity} from 'react-native
 import {createDrawerNavigator} from "react-navigation-drawer";
 import HomeScreen from "../appDrawer/HomeScreen";
 import ProfileScreen from '../appDrawer/ProfileScreen';
+//import ProfileScreen from '../LoginComponent/ProfileScreen';
 import PlatformScreen from '../appDrawer/PlatformScreen';
 import {createAppContainer} from "react-navigation";
 

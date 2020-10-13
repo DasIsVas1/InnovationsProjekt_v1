@@ -3,10 +3,7 @@ import { View, Text, Button } from 'react-native';
 import firebase from 'firebase';
 
 export default class ProfileScreen extends React.Component {
-    componentDidMount = () => {
-        const { user } = firebase.auth();
-        this.setState({ user });
-    };
+
 
     handleLogOut = async () => {
         await firebase.auth().signOut();

@@ -61,7 +61,7 @@ export default class LoginForm extends React.Component {
     render = () => {
         const { errorMessage, email, password, isCompleted } = this.state;
         if (isCompleted) {
-            return <Text>You are now signed up</Text>;
+            return <Text>You are now logged in</Text>;
         }
 
         return (
