@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import {View, Text, StyleSheet, Button,TouchableOpacity} from 'react-native';
-import Header from "./Header";
-export default class HomeScreen extends Component {
+import Header from "../appDrawer/Header";
 
+export default class ExtraScreen extends Component {
+/*
     state={
         clicked:false,
         btnTitle:'Tryk på mig!!!'
@@ -23,19 +24,14 @@ export default class HomeScreen extends Component {
         }
     };
 
+ */
+
     render() {
         return (
             <View style={styles.mainContainer}>
-                <Header navigation={this.props.navigation} title='HomeScreen'/>
-                <View style={styles.textContainer}>
-                    <TouchableOpacity
-                        style={[styles.btn,this.state.clicked ? styles.blue : styles.green]}
-                        onPress={this.onPress} >
-                        <Text style={styles.btn_txt}> {this.state.btnTitle}</Text>
-                    </TouchableOpacity>
+                <Header navigation={this.props.navigation} title='Extra Screen'/>
+                <Text style={styles.textContainer}>DETTE ER EN EXTRA SCREEN</Text>
 
-
-                </View>
             </View>
         );
     }

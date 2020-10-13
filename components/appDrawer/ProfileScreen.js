@@ -1,7 +1,6 @@
-
-import { StatusBar } from 'expo-status-bar';
+import {StatusBar} from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Image,Button } from 'react-native';
+import {StyleSheet, Text, View, Image, Button, TextInput} from 'react-native';
 import Header from "./Header";
 import firebase from "firebase";
 
@@ -12,40 +11,20 @@ export default class ProfileScreen extends React.Component {
     };
 
 
-    state={
-        clicked:false,
-        btnTitle:'Aktiver den rigtige font!'
-    }
-
-    onPress = () => {
-
-        if(!this.state.clicked){
-            this.setState({
-                btnTitle: 'Gå tilbage',
-                clicked: true
-            })
-        }else {
-            this.setState({
-                btnTitle: 'Aktiver den rigtige font',
-                clicked: false
-            })
-        }
-    };
-
     render() {
         return (
             <View style={[styles.mainContainer]}>
-                <Header navigation={this.props.navigation} title='ProfilScreen'/>
-                <View style={styles.imageContainer}>
-                    <Image source = {{uri:'https://i.redd.it/i8t6f16vdd421.jpg'}}
-                           style = {{ width: 200, height: 200 }}/>
-                    <Text
-                        style={[this.state.clicked ? styles.font1 : styles.font2]}
-                    >
-                        Eigil Kjærullf
-                    </Text>
-                    <Button onPress={this.handleLogOut} title="Log out" />
+                <Header navigation={this.props.navigation} title='Profile Screen'/>
 
+                <View style={styles.textContainer}>
+                    <Text>Her skal man kunne ændre sine bruger indstillinger</Text>
+                    <TextInput style={styles.inputField} placeholder="email"/>
+                    <TextInput style={styles.inputField} placeholder="password"/>
+                </View>
+
+
+                <View style={styles.bottom}>
+                    <Button style={styles.btnLogOut} onPress={this.handleLogOut} title="Log out"/>
                 </View>
             </View>
         );
@@ -57,19 +36,42 @@ const styles = StyleSheet.create({
         width: '100%',
 
     },
-    imageContainer:{
+    inputField: {
+        borderWidth: 1,
+        margin: 10,
+        paddingLeft: 50,
+        paddingRight: 50,
+    },
+    textContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1
+    },
+    text1: {
+        justifyContent: "center"
+    },
+    bottom: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        marginBottom: 36,
+    },
+    btnLogOut: {
+        position: 'absolute',
+        bottom: 0,
+    },
+    imageContainer: {
         height: 250,
         alignItems: 'center',
     },
     header: {
-        marginBottom: 70,
+        marginBottom: 10,
         flex: 0.1,
         backgroundColor: '#fff',
     },
     title: {
         fontSize: 35,
     },
-    body:{
+    body: {
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',

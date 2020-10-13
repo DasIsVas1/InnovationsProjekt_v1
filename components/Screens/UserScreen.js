@@ -1,24 +1,24 @@
 import React from 'react';
 import {StyleSheet, ScrollView, Text, View, TouchableOpacity} from 'react-native';
 import {createDrawerNavigator} from "react-navigation-drawer";
-import HomeScreen from "../appDrawer/HomeScreen";
+import YourDesignsScreen from "../appDrawer/YourDesignsScreen";
 import ProfileScreen from '../appDrawer/ProfileScreen';
-//import ProfileScreen from '../LoginComponent/ProfileScreen';
-import PlatformScreen from '../appDrawer/PlatformScreen';
 import {createAppContainer} from "react-navigation";
+import ExtraScreen from "./ExtraScreen";
 
 
 const MyDrawerNavigator = createDrawerNavigator(
     {
-        Home: {
-            screen: HomeScreen
+        Designs: {
+            screen: YourDesignsScreen
         },
         Profile: {
             screen: ProfileScreen
         },
-        Platform: {
-            screen: PlatformScreen
-        }
+        Extra: {
+            screen: ExtraScreen
+        },
+
     });
 
 const AppContainer = createAppContainer(MyDrawerNavigator)

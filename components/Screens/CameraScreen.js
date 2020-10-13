@@ -14,15 +14,10 @@ export default class App extends React.Component {
         hasCameraPermission: null,
         isClicked: false,
         cameraPosition: Camera.Constants.Type.front,
-        lastPhoto: null,
-        hasCameraRollPermission: null,
-        galleryImages: null,
-        showGallery: false
     };
 
     componentDidMount() {
         this.updateCameraPermission();
-        this.updateCameraRollPermission();
         this.updateNavigation();
 
 
@@ -44,11 +39,8 @@ export default class App extends React.Component {
         this.setState({hasCameraPermission: status === 'granted'});
     };
 
-    //Få adgang til galleriet
-    updateCameraRollPermission = async () => {
-        const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-        this.setState({hasCameraRollPermission: status === 'granted'});
-    };
+
+
 
 
     handleTakePhoto = async () => {
@@ -56,9 +48,12 @@ export default class App extends React.Component {
             return;
         }
         const result = await this.cameraRef.current.takePictureAsync();
+        //this.props.navigation.navigate(PHOTO_PREVIEW,{lastPhoto: result.uri})
         this.setState({lastPhoto: result.uri});
         this.handleSaveToCameraRoll(this.state.lastPhoto)
     };
+
+
 
     handleSaveToCameraRoll = async uri => {
         try {
@@ -74,21 +69,6 @@ export default class App extends React.Component {
         Linking.openSettings()
     };
 
-    // Håndter at skifte kamera mellem foran og bagved
-    /*
-    handleChangeCamera = () => {
-      if (this.state.isClicked) {
-        this.setState({cameraPosition: Camera.Constants.Type.front})
-        this.setState({isClicked: false})
-
-      } else {
-        this.setState({cameraPosition: Camera.Constants.Type.back})
-        this.setState({isClicked: true})
-      }
-      console.log(this.state.cameraPosition)
-    }
-
-     */
 
     handleChangeCamera = () => {
         if (this.state.isClicked) {
@@ -100,15 +80,7 @@ export default class App extends React.Component {
         }
     }
 
-    handleLoadGalleryImages = async () => {
-        try {
-            const result = await MediaLibrary.getAssetsAsync({first: 20});
-            this.setState({galleryImages: result.assets});
 
-        } catch (error) {
-            console.log(error)
-        }
-    };
 
     renderCameraView() {
         const {hasCameraPermission, type} = this.state;
@@ -136,92 +108,6 @@ export default class App extends React.Component {
         );
     }
 
-    /*
-        renderCameraView() {
-            const {hasCameraPermission, type} = this.state;
-            if (hasCameraPermission === null) {
-                return <View/>;
-            }
-            if (hasCameraPermission === false) {
-                return (
-                    <View>
-                        <Text>No access to camera.</Text>
-                        <Button onPress={this.handleSettingLink} title='Get permissions to access camera'> </Button>
-                    </View>
-                );
-            }
-            return (
-                <View>
-                    <Camera
-                        style={styles.cameraView}
-                        type={this.state.cameraPosition}
-                        ref={this.cameraRef}>
-                    </Camera>
-                    <Button style={styles.btn} title="Press to take photo" onPress={this.handleTakePhoto}/>
-                    <Button style={styles.btn} title="Switch Camera" onPress={this.handleChangeCamera}/>
-                </View>
-            );
-        }
-
-     */
-
-    renderGalleryView() {
-        // Vi har ingenting så længe vi venter på input fra brugeren
-        const {hasCameraRollPermission, galleryImages} = this.state;
-        if (hasCameraRollPermission === null) {
-            return <View/>
-
-        }
-        // Viser en fejlbesked og en knap til settings hvis brugeren ikke har accepteret adgang
-        if (hasCameraRollPermission === false) {
-            return (
-                <View>
-                    <Text>No access to camera roll</Text>
-                    <Button title="Go to settings" onPress={this.handleSettingLink}/>
-                </View>
-            );
-        }
-        return (
-            <View>
-                <Button title="Load images" onPress={this.handleLoadGalleryImages}/>
-                <View style={styles.galleryView}>
-                    {galleryImages && (
-                        <FlatList
-                            horizontal
-                            styles={styles.Flatlist_render}
-                            data={galleryImages}
-                            // Vi sender vores item, som er den enkelte user, med som prop til UserItem
-                            // Vi sender også vores event handler med som prop, så UserItem ikke skal håndtere navigation
-                            // this.handleSelectUser modtager en user som argument
-                            renderItem={({item}) => (
-                                <Image
-                                    source={{uri: item.uri}}
-                                    key={item.uri}
-                                    style={styles.FlatList_image}
-                                />
-                            )}
-                            keyExtractor={item => item.id}
-                        />
-                    )}
-                </View>
-            </View>
-        );
-    }
-
-    renderLastPhoto() {
-        // her viser vi det seneste tagne billede
-        const {lastPhoto} = this.state;
-        if (!lastPhoto === null) {
-            return <View/>;
-        }
-        return (
-            <View style={styles.lastPhotoContainer}>
-                <Text style={{marginLeft: 160}}>Last Photo</Text>
-                <Image source={{uri: lastPhoto}} style={styles.thumbnail}/>
-            </View>
-
-        );
-    }
 
     /*
     --------------------------------------- MAIN RENDER ---------------------------------------
@@ -245,42 +131,6 @@ export default class App extends React.Component {
             return <View/>
         }
     }
-
-
-    /*
-        render() {
-            const isFocused = this.props.navigation.isFocused();
-
-            if (!isFocused) {
-                return null;
-            } else if (isFocused) {
-                return (
-
-                    <View style={styles.cameraContainer}>
-                        <Text style={styles.textContainer}>Test dit mundbind</Text>
-                        {this.renderCameraView()}
-                    </View>
-                )
-            }
-        }
-
-     */
-
-
-    /*
-    render() {
-        return (
-            <SafeAreaView style={styles.container}>
-                <View style={styles.cameraContainer}>{this.renderCameraView()}</View>
-                <View style={styles.lastPhotoContainer}>{this.renderLastPhoto()}</View>
-                <View style={styles.galleryContainer}>{this.renderGalleryView()}</View>
-
-
-            </SafeAreaView>
-        )
-    }
-     */
-
 }
 
 /*
@@ -297,7 +147,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         fontSize: 20,
-        marginTop: 100,
+        marginTop: 50,
         marginBottom: 20,
         textAlign: 'center',
 
@@ -334,9 +184,8 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         marginLeft: 5,
         marginRight: 5,
-        aspectRatio: 1.0,
         width: '100%',
-        height: 400,
+        height: 600,
 
     },
     lastPhotoContainer: {

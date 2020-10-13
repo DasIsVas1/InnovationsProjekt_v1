@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {StyleSheet, View} from 'react-native';
-import DesignMBScreen from "./components/UnusedComponents/DesignMBScreen";
+import DesignMBScreen from "./components/Screens/DesignMBScreen";
 import {createAppContainer} from "react-navigation";
 import {createBottomTabNavigator} from "react-navigation-tabs";
-import SettingStackNavigation from "./components/UnusedComponents/SettingStackNavigation";
 import {Entypo} from '@expo/vector-icons';
 import {Ionicons} from '@expo/vector-icons';
 import CameraScreen from "./components/Screens/CameraScreen";
@@ -11,7 +10,6 @@ import UserScreen from "./components/Screens/UserScreen";
 import * as firebase from "firebase";
 import SignUpForm from "./components/LoginComponent/SignUpForm";
 import LoginForm from "./components/LoginComponent/LoginForm";
-import ProfileScreen from "./components/LoginComponent/ProfileScreen";
 import {Card} from 'react-native-paper';
 
 /*
