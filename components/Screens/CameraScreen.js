@@ -7,22 +7,23 @@ import * as MediaLibrary from 'expo-media-library';
 
 export default class App extends React.Component {
 
-
     cameraRef = React.createRef();
 
+    // Sætter de forsekllige states til at være hhv null og false altså tomme
     state = {
         hasCameraPermission: null,
         isClicked: false,
         cameraPosition: Camera.Constants.Type.front,
     };
 
+    // Når kameraret tages i brug tjekkes der om der er givet tilladelse til at bruge kameraet og at der kan navigeres
+    // frem og tilbage uden at kameraet gåe i sort
     componentDidMount() {
         this.updateCameraPermission();
         this.updateNavigation();
-
-
     }
 
+    // Sørger for at kameraet ikke går i sort ved brug af navigation
     updateNavigation = async () => {
         const {navigation} = this.props;
         navigation.addListener('willFocus', () =>
@@ -39,10 +40,7 @@ export default class App extends React.Component {
         this.setState({hasCameraPermission: status === 'granted'});
     };
 
-
-
-
-
+    // Står for at billedet bliver taget og gemmer det til kamera galleriet
     handleTakePhoto = async () => {
         if (!this.cameraRef.current) {
             return;
@@ -53,8 +51,7 @@ export default class App extends React.Component {
         this.handleSaveToCameraRoll(this.state.lastPhoto)
     };
 
-
-
+    // Står for at gemme billedet til enhends billede galleri
     handleSaveToCameraRoll = async uri => {
         try {
             await MediaLibrary.createAssetAsync(uri, 'photo');
@@ -69,7 +66,7 @@ export default class App extends React.Component {
         Linking.openSettings()
     };
 
-
+    // Står for at brugeren kan skifte mellem front og back kamera
     handleChangeCamera = () => {
         if (this.state.isClicked) {
             this.setState({cameraPosition: Camera.Constants.Type.front})
@@ -80,8 +77,7 @@ export default class App extends React.Component {
         }
     }
 
-
-
+    // Render det view hvori kameraet fremgår
     renderCameraView() {
         const {hasCameraPermission, type} = this.state;
         if (hasCameraPermission === null) {
@@ -97,11 +93,18 @@ export default class App extends React.Component {
         }
         return (
             <View>
-                <Camera
-                    style={styles.cameraView}
-                    type={this.state.cameraPosition}
-                    ref={this.cameraRef}>
-                </Camera>
+                <View>
+                    <Image style={styles.logo}
+                           source={{uri: "https://images.rawpixel.com/image_png_900/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvcGYtczY3LXBvbS0yNzMxLnBuZw%3D.png?s=zaT7Gqgj60wShPhABbOPubDqT3QI9zk8AelBQM9ldhI"}}/>
+
+                    <Camera
+                        style={styles.cameraView}
+                        type={this.state.cameraPosition}
+                        ref={this.cameraRef}
+                    />
+
+                </View>
+
                 <Button style={styles.btn} title="Press to take photo" onPress={this.handleTakePhoto}/>
                 <Button style={styles.btn} title="Switch Camera" onPress={this.handleChangeCamera}/>
             </View>
@@ -150,8 +153,6 @@ const styles = StyleSheet.create({
         marginTop: 50,
         marginBottom: 20,
         textAlign: 'center',
-
-
     },
     btn: {
         margin: 100
@@ -164,9 +165,7 @@ const styles = StyleSheet.create({
         ...containerStyle,
         backgroundColor: '#FFFFFF',
     },
-    mundbindContainer: {
-
-    },
+    mundbindContainer: {},
     cameraView2: {
         position: 'absolute',
         top: 0,

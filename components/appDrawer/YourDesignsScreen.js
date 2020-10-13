@@ -13,10 +13,17 @@ import * as Permissions from 'expo-permissions';
 import * as MediaLibrary from 'expo-media-library';
 import Header from "./Header";
 
+/*
+Denne klasse har til formål at skulle vise de billeder en bruger tager med det indbyggede kamera i appen
+I bedste use case vil det designede mundbind kunne vises som et "filter" over kameraet hvorved der næst gemmes billedet med filteret og vises i "lastPhoto"
+Virker dog ikke...
+ */
+
 
 export default class App extends React.Component {
     cameraRef = React.createRef();
 
+    // Sætter de forsekllige states til at være hhv null og false altså tomme
     state = {
         isClicked: false,
         lastPhoto: null,
@@ -25,12 +32,14 @@ export default class App extends React.Component {
         showGallery: false
     };
 
+    // Når kameraret tages i brug tjekkes der om der er givet tilladelse til at få adgang til enhedens billede galleri
     componentDidMount() {
         this.updateCameraRollPermission();
         this.updateNavigation();
 
     }
 
+    // Sørger for at kameraet ikke går i sort ved brug af navigation
     updateNavigation = async () => {
         const {navigation} = this.props;
         navigation.addListener('willFocus', () =>
@@ -53,6 +62,7 @@ export default class App extends React.Component {
         Linking.openSettings()
     };
 
+    // Står for at få loade enhedens galleri. Virker dog ikke... uden at crashe appen
     handleLoadGalleryImages = async () => {
         try {
             const result = await MediaLibrary.getAssetsAsync({first: 20});
@@ -63,6 +73,8 @@ export default class App extends React.Component {
         }
     };
 
+    // Render de billeder der er i brugerens enheds billed galleri
+    // Virker dog ikke uden at crashe appen
     renderGalleryView() {
         // Vi har ingenting så længe vi venter på input fra brugeren
         const {hasCameraRollPermission, galleryImages} = this.state;
@@ -81,8 +93,8 @@ export default class App extends React.Component {
         }
         return (
             <View>
-
                 <View style={styles.galleryView}>
+
                     {galleryImages && (
                         <FlatList
                             horizontal
@@ -135,7 +147,6 @@ export default class App extends React.Component {
                 <Header navigation={this.props.navigation} title='Dine Designs'/>
                 <SafeAreaView>
                     <View style={styles.lastPhotoContainer}>{this.renderLastPhoto()}</View>
-
                     <View style={styles.galleryContainer}>{this.renderGalleryView()}</View>
                 </SafeAreaView>
             </View>
@@ -182,7 +193,7 @@ const styles = StyleSheet.create({
         height: 270
     },
     lastPhotoContainer: {
-        backgroundColor: '#DFF',
+        backgroundColor: '#b5b5b5',
         width: '100%',
         height: 350,
         marginTop: 10,
@@ -190,7 +201,7 @@ const styles = StyleSheet.create({
     },
     galleryContainer: {
         //...containerStyle,
-        backgroundColor: '#FDF',
+        backgroundColor: '#d6d6d6',
         marginBottom: 10,
 
     },

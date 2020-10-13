@@ -1,7 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
+import {StatusBar} from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
-import Header from "./Header";
+import {StyleSheet, Text, View, Platform} from 'react-native';
+import Header from "../appDrawer/Header";
 
 export default class PlatformScreen extends React.Component {
     render() {
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
             android: {
                 backgroundColor: 'blue'
             },
-            web:{
-                backgroundColor:'green'
+            web: {
+                backgroundColor: 'green'
             }
         })
     }

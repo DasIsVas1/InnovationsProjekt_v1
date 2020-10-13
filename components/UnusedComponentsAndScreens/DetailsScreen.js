@@ -41,32 +41,3 @@ const styles = StyleSheet.create({
 
 });
 
-
-/*
-const stackNavigator = createStackNavigator(
-    {
-        Home: { screen: DesignMBScreen },
-        Settings : { screen: SettingsScreenOld },
-    },
-    {
-        initialRouteName: 'Home',
-        navigationOptions: {
-         //   title: 'Main',
-        },
-    }
-);
-export default stackNavigator
- */
-
-
-/*
-export default class DetailsScreen extends Component {
-    render() {
-        return(
-            <View style = {styles.container}>
-                <Text style = {styles.textContainer}>Dette er Details Screen </Text>
-            </View>
-        )
-    }
-}
- */

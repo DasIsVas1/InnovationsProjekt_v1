@@ -1,6 +1,6 @@
 import {createStackNavigator} from "react-navigation-stack";
-import SettingsScreenOld from "../Screens/SettingsScreenOld";
-import DetailsScreen from "../Screens/DetailsScreen";
+import SettingsScreenOld from "./SettingsScreenOld";
+import DetailsScreen from "./DetailsScreen";
 
 const SettingStackNavigation = createStackNavigator(
     {

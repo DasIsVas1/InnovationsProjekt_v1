@@ -4,8 +4,11 @@ import {createDrawerNavigator} from "react-navigation-drawer";
 import YourDesignsScreen from "../appDrawer/YourDesignsScreen";
 import ProfileScreen from '../appDrawer/ProfileScreen';
 import {createAppContainer} from "react-navigation";
-import ExtraScreen from "./ExtraScreen";
+import ExtraScreen from "../appDrawer/ExtraScreen";
 
+/*
+Denne klasse er selve AppDrawer funktionen. Her kan man refferer til den andre sceens som man gerne vil have med
+ */
 
 const MyDrawerNavigator = createDrawerNavigator(
     {
