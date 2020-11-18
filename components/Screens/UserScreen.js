@@ -4,7 +4,7 @@ import {createDrawerNavigator} from "react-navigation-drawer";
 import YourDesignsScreen from "../appDrawer/YourDesignsScreen";
 import ProfileScreen from '../appDrawer/ProfileScreen';
 import {createAppContainer} from "react-navigation";
-import ExtraScreen from "../appDrawer/ExtraScreen";
+import KoebsScreen from "../appDrawer/KoebsScreen";
 
 /*
 Denne klasse er selve AppDrawer funktionen. Her kan man refferer til den andre sceens som man gerne vil have med
@@ -18,8 +18,8 @@ const MyDrawerNavigator = createDrawerNavigator(
         Profile: {
             screen: ProfileScreen
         },
-        Extra: {
-            screen: ExtraScreen
+        Køb: {
+            screen: KoebsScreen
         },
 
     });

@@ -30,6 +30,12 @@ export default class DesignMBScreen extends Component {
                     <Button title="Lilla"/>
                 </View>
                 <View style={styles.btn1}>
+                    <Button title="Sort"/>
+                </View>
+                <View style={styles.btn1}>
+                    <Button title="Hvid"/>
+                </View>
+                <View style={styles.btn1}>
                     <Button title="Indsæt billede på mundbind"/>
                 </View>
             </View>
@@ -50,7 +56,7 @@ const styles = StyleSheet.create({
     },
     btn1: {
         width: "75%",
-        marginTop: 10,
+        marginTop: 5,
         padding: 10,
     },
     textContainer: {

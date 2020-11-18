@@ -95,6 +95,7 @@ export default class App extends React.Component {
             <View>
                 <View style={styles.galleryView}>
 
+
                     {galleryImages && (
                         <FlatList
                             horizontal
@@ -128,7 +129,7 @@ export default class App extends React.Component {
         }
         return (
             <View style={styles.lastPhotoContainer}>
-                <Text style={{marginLeft: 160}}>Last Photo</Text>
+                <Text style={{marginLeft: 160}}>Sidste Foto</Text>
                 <Image source={{uri: lastPhoto}} style={styles.thumbnail}/>
 
             </View>

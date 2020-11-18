@@ -31,11 +31,11 @@ Render metoden som står for at vise
                     <Text>Her skal man kunne ændre sine bruger indstillinger</Text>
                     <View style={styles.btn1}>
                         <TextInput style={styles.inputField} placeholder="email"/>
-                        <Button title="Change email"></Button>
+                        <Button title="Change email"/>
                     </View>
                     <View style={styles.btn1}>
                         <TextInput style={styles.inputField} placeholder="password"/>
-                        <Button title="Change password"></Button>
+                        <Button title="Change password"/>
                     </View>
                 </View>
 
