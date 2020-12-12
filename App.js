@@ -6,11 +6,15 @@ import {createBottomTabNavigator} from "react-navigation-tabs";
 import {Entypo} from '@expo/vector-icons';
 import {Ionicons} from '@expo/vector-icons';
 import CameraScreen from "./components/Screens/CameraScreen";
+import CameraScreenTest from "./components/UnusedComponentsAndScreens/CameraScreenTest";
 import UserScreen from "./components/Screens/UserScreen";
 import * as firebase from "firebase";
 import SignUpForm from "./components/LoginComponent/SignUpForm";
 import LoginForm from "./components/LoginComponent/LoginForm";
 import {Card} from 'react-native-paper';
+import LoginScreen from "./components/LoginComponent/LoginScreen";
+import {createStackNavigator} from "react-navigation-stack";
+import SignUpScreen from "./components/LoginComponent/SignUpScreen";
 
 /*
 Husk at begge skal importeres.
@@ -36,6 +40,15 @@ if (!firebase.apps.length) {
 /*
 ------------------------------------------ FIREBASE END -----------------------------------
  */
+
+const LoginNavigator = createStackNavigator(
+    {
+        Login: {screen: LoginScreen },
+        SignUp: {screen: SignUpScreen},
+    },
+);
+
+const LoginContainer = createAppContainer(LoginNavigator);
 
 /*
 ------------------------------------------ tabNavigator -----------------------------------
@@ -126,15 +139,7 @@ export default class App extends React.Component {
 
         if (!user) {
             return (
-                <View>
-                    <Card>
-                        <SignUpForm/>
-                    </Card>
-
-                    <Card>
-                        <LoginForm/>
-                    </Card>
-                </View>
+                <LoginContainer />
             )
         } else {
             return (

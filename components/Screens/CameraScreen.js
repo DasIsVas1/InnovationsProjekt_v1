@@ -3,11 +3,11 @@ import {Text, View, StyleSheet, SafeAreaView, Linking, FlatList, Button, Image,}
 import {Camera} from 'expo-camera';
 import * as Permissions from 'expo-permissions';
 import * as MediaLibrary from 'expo-media-library';
+import { useIsFocused } from '@react-navigation/native';
+
 
 
 export default class App extends React.Component {
-
-    cameraRef = React.createRef();
 
     // Sætter de forsekllige states til at være hhv null og false altså tomme
     state = {
@@ -92,22 +92,26 @@ export default class App extends React.Component {
             );
         }
         return (
-            <View>
+            <SafeAreaView>
                 <View>
-                    <Image style={styles.logo}
-                           source={{uri: "https://images.rawpixel.com/image_png_900/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvcGYtczY3LXBvbS0yNzMxLnBuZw%3D.png?s=zaT7Gqgj60wShPhABbOPubDqT3QI9zk8AelBQM9ldhI"}}/>
-
+                    <View>
+                        <Image style={styles.logo}
+                               source={{uri:
+                                       "https://images.rawpixel.com/image_png_900/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvcGYtczY3LXBvbS0yNzMxLnBuZw%3D.png?s=zaT7Gqgj60wShPhABbOPubDqT3QI9zk8AelBQM9ldhI"}}/>
+                    </View>
                     <Camera
                         style={styles.cameraView}
                         type={this.state.cameraPosition}
-                        ref={this.cameraRef}
-                    />
+                        ref={this.cameraRef}>
 
+                    </Camera>
                 </View>
-
                 <Button style={styles.btn} title="Press to take photo" onPress={this.handleTakePhoto}/>
                 <Button style={styles.btn} title="Switch Camera" onPress={this.handleChangeCamera}/>
-            </View>
+
+            </SafeAreaView>
+
+
         );
     }
 

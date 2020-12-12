@@ -58,8 +58,8 @@ export default class LoginForm extends React.Component {
         }
 
         return (
-            <View>
-                <Text style={styles.header}>Login</Text>
+            <View style={styles.header}>
+                <Text >Login</Text>
                 <TextInput
                     placeholder="email"
                     value={email}
@@ -94,6 +94,9 @@ export default class LoginForm extends React.Component {
 ------------------------------------------ STYLESHEET --------------------------------------
  */
 const styles = StyleSheet.create({
+    header: {
+        marginTop: 350,
+    },
     error: {
         color: 'red',
     },
