@@ -29,7 +29,8 @@ export default class App extends React.Component {
         lastPhoto: null,
         hasCameraRollPermission: null,
         galleryImages: null,
-        showGallery: false
+        showGallery: false,
+        image: null,
     };
 
     // Når kameraret tages i brug tjekkes der om der er givet tilladelse til at få adgang til enhedens billede galleri
@@ -94,6 +95,8 @@ export default class App extends React.Component {
         return (
             <View>
                 <View style={styles.galleryView}>
+                    <Text style={{marginLeft: 15}}>Her skal der kunne vises brugerens kamerarulle. Tryk ikke på "Load images" knappen da applikationen vil crashe i denne version</Text>
+
 
 
                     {galleryImages && (
@@ -129,7 +132,7 @@ export default class App extends React.Component {
         }
         return (
             <View style={styles.lastPhotoContainer}>
-                <Text style={{marginLeft: 160}}>Sidste Foto</Text>
+                <Text style={{marginLeft: 15}}>Her skal der kunne vises det sidste taget billede med filteret ovenpå</Text>
                 <Image source={{uri: lastPhoto}} style={styles.thumbnail}/>
 
             </View>

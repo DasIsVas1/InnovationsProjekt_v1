@@ -28,7 +28,7 @@ Render metoden som står for at vise
                 <Header navigation={this.props.navigation} title='Profile Screen'/>
 
                 <View style={styles.textContainer}>
-                    <Text>Her skal man kunne ændre sine bruger indstillinger</Text>
+                    <Text>Skift dit brugernavn eller adgangskode</Text>
                     <View style={styles.btn1}>
                         <TextInput style={styles.inputField} placeholder="email"/>
                         <Button title="Change email"/>
@@ -43,6 +43,8 @@ Render metoden som står for at vise
                     <Button style={styles.btnLogOut} onPress={this.handleLogOut} title="Log out"/>
                 </View>
             </View>
+
+
         );
     }
 }

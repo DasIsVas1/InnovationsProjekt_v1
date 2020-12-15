@@ -8,6 +8,8 @@ import { useIsFocused } from '@react-navigation/native';
 
 
 export default class App extends React.Component {
+    cameraRef = React.createRef();
+
 
     // Sætter de forsekllige states til at være hhv null og false altså tomme
     state = {
@@ -76,6 +78,8 @@ export default class App extends React.Component {
             this.setState({isClicked: true})
         }
     }
+
+
 
     // Render det view hvori kameraet fremgår
     renderCameraView() {

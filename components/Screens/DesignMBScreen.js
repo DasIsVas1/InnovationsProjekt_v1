@@ -54,6 +54,10 @@ export default class DesignMBScreen extends Component {
                        source={{uri: "https://images.rawpixel.com/image_png_900/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvcGYtczY3LXBvbS0yNzMxLnBuZw%3D.png?s=zaT7Gqgj60wShPhABbOPubDqT3QI9zk8AelBQM9ldhI"}}
                 />
 
+                <View style={styles.btn1}>
+                    <Button title="Indsæt eget billed"/>
+                </View>
+
 
                 <View style={styles.dropdownContainer}>
                     <Text style={styles.textContainer}>Vælg type</Text>
@@ -94,13 +98,11 @@ export default class DesignMBScreen extends Component {
                         }}
                         dropDownStyle={{backgroundColor: '#fafafa'}}
                         onChangeItem={item => this.setState({
-                            country: item.value
+                            farve: item.value
                         })}
                     />
                 </View>
-                <View style={styles.btn1}>
-                    <Button title="Indsæt eget billed"/>
-                </View>
+
             </View>
 
         );

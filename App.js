@@ -21,9 +21,7 @@ Husk at begge skal importeres.
 1. skal vi have en container med som bruges i default (rd. "MAIN") metoden
 2. skal vi have importer selve bottom navigation componenten
  */
-/*
------------------------------------------- FIREBASE ---------------------------------------
- */
+
 const fireBaseConfig = {
     apiKey: "AIzaSyB2Xe40c4U_1MrC9ffo6ubNDHod5RLpih0",
     authDomain: "innovationsprojektmbapp.firebaseapp.com",
@@ -37,22 +35,17 @@ const fireBaseConfig = {
 if (!firebase.apps.length) {
     firebase.initializeApp(fireBaseConfig);
 }
-/*
------------------------------------------- FIREBASE END -----------------------------------
- */
+
 
 const LoginNavigator = createStackNavigator(
     {
-        Login: {screen: LoginScreen },
+        Login: {screen: LoginScreen},
         SignUp: {screen: SignUpScreen},
     },
 );
 
 const LoginContainer = createAppContainer(LoginNavigator);
 
-/*
------------------------------------------- tabNavigator -----------------------------------
- */
 
 const tabNavigator = createBottomTabNavigator(
     /*
@@ -95,7 +88,6 @@ const tabNavigator = createBottomTabNavigator(
                 )
             }
         },
-
     },
     /*
     Generelle label indstillinger
@@ -115,13 +107,6 @@ const tabNavigator = createBottomTabNavigator(
 
 const AppNav = createAppContainer(tabNavigator);
 
-/*
------------------------------------------- tabNavigator END --------------------------------
- */
-
-/*
------------------------------------------- MAIN --------------------------------------------
- */
 
 export default class App extends React.Component {
 
@@ -139,7 +124,7 @@ export default class App extends React.Component {
 
         if (!user) {
             return (
-                <LoginContainer />
+                <LoginContainer/>
             )
         } else {
             return (
@@ -150,14 +135,6 @@ export default class App extends React.Component {
         }
     }
 }
-
-/*
------------------------------------------- MAIN END-----------------------------------------
- */
-
-/*
------------------------------------------- STYLESHEET --------------------------------------
- */
 
 const styles = StyleSheet.create({
     container: {
@@ -176,7 +153,5 @@ const styles = StyleSheet.create({
     }
 });
 
-/*
------------------------------------------- STYLESHEET END ----------------------------------
- */
+
 
